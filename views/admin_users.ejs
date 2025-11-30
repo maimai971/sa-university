@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<section class="card">
+  <h2>Gestion des utilisateurs</h2>
+  <% if (created) { %>
+    <div class="notice">Compte créé: <strong><%= created.username %></strong> Mot de passe: <strong><%= created.password %></strong></div>
+  <% } %>
+  <form method="POST" action="/admin/users/create">
+    <input name="username" placeholder="username" required>
+    <input name="displayname" placeholder="displayname">
+    <input name="password" placeholder="password (laisser vide pour génération)">
+    <select name="role"><option value="student">Élève</option><option value="teacher">Prof</option><option value="admin">Admin</option></select>
+    <button>Créer</button>
+  </form>
+  <hr>
+  <h3>Liste</h3>
+  <table><tr><th>ID</th><th>username</th><th>display</th><th>role</th><th>actions</th></tr>
+    <% users.forEach(u=>{ %>
+      <tr><td><%= u.id %></td><td><%= u.username %></td><td><%= u.displayname %></td><td><%= u.role %></td>
+      <td>
+        <form method="POST" action="/admin/users/reset" style="display:inline"><input type="hidden" name="id" value="<%= u.id %>"><button>Reset</button></form>
+        <form method="POST" action="/admin/users/delete" style="display:inline"><input type="hidden" name="id" value="<%= u.id %>"><button>Del</button></form>
+      </td></tr>
+    <% }) %>
+  </table>
+</section>
+<%- include('partials/footer') %>

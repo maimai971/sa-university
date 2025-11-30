@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<section class="card">
+  <h2>Diplômes</h2>
+  <ul>
+    <% if (diplomes.length === 0) { %><li>Aucun diplôme.</li><% } %>
+    <% diplomes.forEach(d => { %>
+      <li><strong><%= d.titre %></strong> — Moyenne: <%= d.moyenne %> — <%= d.date_obtention %>
+      <% if (d.attachment) { %> — <a href="<%= d.attachment %>">Voir</a><% } %>
+      <% if (user.role === 'admin') { %>
+        <form method="POST" action="/diplomes/delete" style="display:inline"><input type="hidden" name="id" value="<%= d.id %>"><button>Suppr</button></form>
+      <% } %>
+      </li>
+    <% }) %>
+  </ul>
+  <% if (user.role === 'admin') { %>
+    <hr>
+    <h3>Générer diplôme</h3>
+    <form method="POST" action="/diplomes" enctype="multipart/form-data">
+      <input name="user_id" placeholder="ID élève" required>
+      <input name="titre" placeholder="Titre">
+      <label>Fichier<input type="file" name="attachment"></label>
+      <button>Générer</button>
+    </form>
+  <% } %>
+</section>
+<%- include('partials/footer') %>

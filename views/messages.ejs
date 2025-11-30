@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<section class="card">
+  <h2>Messages (en direct)</h2>
+  <div id="chat">
+    <div id="messages">
+      <% messages.forEach(m => { %>
+        <div class="msg"><strong><%= m.displayname %>:</strong> <%= m.contenu %> <em>(<%= m.date %>)</em></div>
+      <% }) %>
+    </div>
+    <form id="chatForm">
+      <input id="msgInput" placeholder="Écrire..." autocomplete="off">
+      <button>Envoyer</button>
+    </form>
+  </div>
+</section>
+<%- include('partials/footer') %>

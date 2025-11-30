@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+<section class="card">
+  <h2>Emploi du temps</h2>
+  <table>
+    <tr><th>Jour</th><th>Horaire</th><th>Matière</th><th>Enseignant</th><th>Action</th></tr>
+    <% if (emploi.length === 0) { %><tr><td colspan="5">Aucun emploi du temps.</td></tr><% } %>
+    <% emploi.forEach(e => { %>
+      <tr>
+        <td><%= e.jour %></td><td><%= e.horaire %></td><td><%= e.matiere %></td><td><%= e.enseignant %></td>
+        <td>
+          <% if (user.role === 'admin') { %>
+            <form method="POST" action="/timetable/delete" style="display:inline">
+              <input type="hidden" name="id" value="<%= e.id %>">
+              <button>Suppr</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+  <% if (user.role === 'admin') { %>
+    <hr>
+    <h3>Ajouter</h3>
+    <form method="POST" action="/timetable">
+      <input name="jour" placeholder="Lundi" required>
+      <input name="horaire" placeholder="09:00 - 10:00" required>
+      <input name="matiere" placeholder="Matière" required>
+      <input name="enseignant" placeholder="Enseignant">
+      <button>Ajouter</button>
+    </form>
+  <% } %>
+</section>
+<%- include('partials/footer') %>

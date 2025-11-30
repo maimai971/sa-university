@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<section class="card">
+  <h2>Notes</h2>
+  <table>
+    <tr><th>Élève</th><th>Matière</th><th>Note</th><th>Coef</th><th>Auteur</th><th>Fichier</th><th>Action</th></tr>
+    <% if (notes.length === 0) { %><tr><td colspan="7">Aucune note.</td></tr><% } %>
+    <% notes.forEach(n => { %>
+      <tr>
+        <td><%= n.eleve || n.user_id %></td><td><%= n.matiere %></td><td><%= n.note %></td><td><%= n.coefficient %></td><td><%= n.auteur || n.auteur_id %></td>
+        <td><% if (n.attachment) { %><a href="<%= n.attachment %>" target="_blank">Voir</a><% } else { %>—<% } %></td>
+        <td>
+          <% if (user.role === 'admin') { %>
+            <form method="POST" action="/notes/delete"><input type="hidden" name="id" value="<%= n.id %>"><button>Suppr</button></form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+  <% if (user.role === 'admin') { %>
+    <hr>
+    <h3>Ajouter note</h3>
+    <form method="POST" action="/notes" enctype="multipart/form-data">
+      <input name="user_id" placeholder="ID élève" required>
+      <input name="matiere" placeholder="Matière" required>
+      <input name="note" placeholder="Note" required>
+      <input name="coefficient" placeholder="Coef" value="1">
+      <label>Fichier<input type="file" name="attachment"></label>
+      <button>Ajouter</button>
+    </form>
+  <% } %>
+</section>
+<%- include('partials/footer') %>

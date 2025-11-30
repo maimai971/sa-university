@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+<section class="card">
+  <h2>Bienvenue, <%= user.displayname || user.username %></h2>
+  <p class="muted">Rôle : <strong><%= user.role %></strong></p>
+  <div class="grid">
+    <a class="box" href="/timetable">Emploi du temps</a>
+    <a class="box" href="/devoirs">Devoirs</a>
+    <a class="box" href="/notes">Notes</a>
+    <a class="box" href="/diplomes">Diplômes</a>
+    <a class="box" href="/messages">Messages</a>
+    <% if (user.role === 'admin') { %><a class="box" href="/admin/users">Gestion utilisateurs</a><% } %>
+  </div>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,25 @@
+/* Premium style C: blue-night + gold accents */
+:root{--bg:#0b1220;--card:#0f1724;--accent:#c59b35;--muted:#9aa4b2;--text:#e6eef6}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#08101a,#0b1220);color:var(--text)}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:rgba(255,255,255,0.02);backdrop-filter:blur(6px)}
+.header-left{display:flex;gap:14px;align-items:center}
+.logo{height:64px;width:64px;border-radius:12px;background:#fff;padding:6px;object-fit:contain}
+.brand h1{margin:0;font-size:18px;color:var(--text)}
+.brand .subtitle{font-size:12px;color:var(--muted)}
+.header-nav a{color:var(--muted);margin-left:12px;text-decoration:none}
+.container{max-width:1100px;margin:28px auto;padding:0 18px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:20px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6);margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.box{display:block;padding:16px;border-radius:10px;background:linear-gradient(90deg,#081a2b,#0d2436);color:var(--text);text-align:center;text-decoration:none}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+table th,table td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+input,textarea,select{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+button{padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:#08101a;cursor:pointer}
+.notice{background:rgba(197,155,53,0.08);padding:12px;border-left:4px solid var(--accent);border-radius:6px;color:var(--text)}
+.site-footer{text-align:center;padding:18px;color:var(--muted)}
+#chat{display:flex;flex-direction:column;gap:12px}
+#messages{max-height:300px;overflow:auto;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02)}
+.msg{padding:8px;border-radius:6px;background:rgba(255,255,255,0.02);margin-bottom:6px}
+#chatForm{display:flex;gap:8px}
+#msgInput{flex:1}

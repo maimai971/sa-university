@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>San Andreas University</title>
+  <link rel="stylesheet" href="/css/premium.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-left">
+    <img src="/images/logo.png" class="logo" alt="logo">
+    <div class="brand"><h1>San Andreas University</h1><div class="subtitle">Excellence RP</div></div>
+  </div>
+  <nav class="header-nav">
+    <% if (user) { %>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/timetable">Emploi</a>
+      <a href="/devoirs">Devoirs</a>
+      <a href="/notes">Notes</a>
+      <a href="/diplomes">Diplômes</a>
+      <a href="/messages">Messages</a>
+      <% if (user.role === 'admin') { %><a href="/admin/users">Utilisateurs</a><% } %>
+      <a href="/logout" class="logout">Déconnexion</a>
+    <% } else { %>
+      <a href="/login">Connexion</a>
+    <% } %>
+  </nav>
+</header>
+<main class="container">
